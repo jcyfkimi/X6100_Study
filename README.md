@@ -1,4 +1,4 @@
-tury
+# X6100 Stury
 
 This project is created for the study of Xiegu X6100 QRP Full Mode SDR HF Transceiver based on the firmware upgrade images, X6100 should be the first ARM Linux based HF Transceiver in the world, it's pretty interesting. 
 
