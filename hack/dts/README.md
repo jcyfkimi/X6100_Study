@@ -65,7 +65,7 @@ From the pin outs we can see it's only using 6 pins for R/G/B data. And also it 
 ### 3. RTC
 |RTC|I2C|SoC|
 |:----:|:----:|:----:|
-|PCF8563| I2C0 | PH2, PH3 |
+|PCF8563| I2C0 | PH2（SCK）, PH3（SDA） |
 
 ### 4. Keypad
 ## TBD
