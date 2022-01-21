@@ -47,12 +47,13 @@ With the dts file, we can starting analysising.
 |DE| PD25 | Data enable signal for RGB interface|
 |HSYNC| PD26 | Horizontal(Line) sync signal for RGB interface|
 |VSYNC| PD27 | Vertical(Frame) sync signal for RGB interface|
-|/RESET| TBD | Reset signal|
-|RS| TBD | Command/Data select signal|
-|/CS| TBD | Chip Select signal|
-|SCL| TBD | Serial interface clock|
-|SDA| TBD | Serial interface data|
+|/RESET| PL11(*) | Reset signal|
+|RS| PL10(*) | Command/Data select signal|
+|/CS| PL7(*) | Chip Select signal|
+|SCL| PL9(*) | Serial interface clock|
+|SDA| PL8(*) | Serial interface data|
 
+The Pins marked as * means currently not 100% sure and maybe wrong.
 From the pin outs we can see it's only using 6 pins for R/G/B data. And also it seems did not using the Hardware SPI interface, just using GPIO. 
 
 ### 2. Rotory encoder
