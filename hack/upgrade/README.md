@@ -122,6 +122,8 @@ $
 
 Bingo, we got the rootfs.tar file. Actually, for the other 2 partitions, we can do the same thing. 
 
+NOTICE: Due to the git LFS out of quota, so I can not upload rootfs.tar into this repo, you should able to extract by your own.
+
 And now let's take a look of how the eMMC is formatted. 
 
 ## [ROOTFS]/usr/share/emmc_sources/fmt_emmc.sh
