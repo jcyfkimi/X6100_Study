@@ -1,0 +1,14 @@
+#!/bin/sh
+
+source /etc/profile
+cd /usr/share/emmc_sources
+./install_emmc.sh 1>&/dev/tty0
+echo "update finished!" 1>&/dev/tty0
+echo "power off in 3" 1>&/dev/tty0
+sleep 1
+echo "power off in 2" 1>&/dev/tty0
+sleep 1
+echo "power off in 1" 1>&/dev/tty0
+sleep 1
+echo "power off in 0" 1>&/dev/tty0
+poweroff

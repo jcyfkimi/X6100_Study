@@ -1,0 +1,36 @@
+#! /bin/sh
+
+set -e
+source /etc/profile
+
+DESC="user app daemon"
+NAME=x6100_ui_v100
+DAEMON=/usr/app_qt/$NAME
+
+case "$1" in
+  start)
+	printf "Starting $DESC: "
+	start-stop-daemon -S -b -x $DAEMON
+	echo 1 > /sys/class/gpio/gpio138/value
+	echo "OK"
+	;;
+  stop)
+	printf "Stopping $DESC: "
+	start-stop-daemon -K -x $DAEMON
+	echo 0 > /sys/class/gpio/gpio138/value
+	echo "OK"
+	;;
+  restart|force-reload)
+	echo "Restarting $DESC: "
+	$0 stop
+	sleep 1
+	$0 start
+	echo ""
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart|force-reload}" >&2
+	exit 1
+	;;
+esac
+
+exit 0
