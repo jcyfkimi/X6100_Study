@@ -88,7 +88,41 @@ This script is a bit longer than previous one, but it's also easy to read, it di
 - Step4: Copy kernel image, dtb and boot script into 1st partition of eMMC
 - Step5: Extract rootfs into 2nd partition of eMMC
 
-Let's take a look of how the eMMC is formatted. 
+Before we looking into the how the eMMC is formatted, let's focus on Step5 firstly, we noticed that the rootfs.tar comes form the 3rd partition of SD card, which means it comes from the FW image directly, let's try to extract the rootfs.tar. 
+
+Firstly, let's check how many partitions in X6100_sdcard_20220117.img by using fdisk -l command:
+```
+$ fdisk -l X6100_sdcard_20220117.img
+
+Disk X6100_sdcard_20220117.img: 909 MB, 909115392 bytes
+255 heads, 63 sectors/track, 110 cylinders, total 1775616 sectors
+Units = sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk identifier: 0x00000000
+
+                    Device Boot      Start         End      Blocks   Id  System
+X6100_sdcard_20220117.img1   *        2048       34815       16384    c  W95 FAT32 (LBA)
+X6100_sdcard_20220117.img2           34816     1058815      512000   83  Linux
+X6100_sdcard_20220117.img3         1058816     1775615      358400    c  W95 FAT32 (LBA)
+
+```
+
+We can see that the 3rd pattition still a FAT32 formatted partition, and start section is 1058816, let's try to mount it directly:
+
+```
+$ mkdir mount_point
+$ sudo mount -o loop,offset=$((1058816*512)) X6100_sdcard_20220117.img mount_point/
+$ ls -l mount_point/
+total 304960
+-rwxr-xr-x 1 root root 312279040  1ÔÂ 17 16:33 rootfs.tar
+$
+
+```
+
+Bingo, we got the rootfs.tar file. Actually, for the other 2 partitions, we can do the same thing. 
+
+And now let's take a look of how the eMMC is formatted. 
 
 ## [ROOTFS]/usr/share/emmc_sources/fmt_emmc.sh
 
